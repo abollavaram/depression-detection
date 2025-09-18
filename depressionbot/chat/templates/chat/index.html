@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Depression Detection Chatbot</title>
+</head>
+<body>
+    <h2>Depression Detection Chatbot</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="message" placeholder="Type your message..." size="50" required>
+        <button type="submit">Check</button>
+    </form>
+
+    {% if user_input %}
+        <h3>Your message: "{{ user_input }}"</h3>
+
+        <h3>
+            Text-Based Prediction: 
+            {% if result == "Depressed 😟" %}
+                <span style="color: red;">{{ result }}</span>
+            {% else %}
+                <span style="color: green;">{{ result }}</span>
+            {% endif %}
+        </h3>
+
+        <h3>Facial Emotion Detected: {{ face_emotion }}</h3>
+    {% endif %}
+</body>
+</html>
